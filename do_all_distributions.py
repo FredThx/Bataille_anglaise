@@ -10,9 +10,11 @@ infinites = []
 cartes = ['A','K','Q','J']*4+['-']*4*9
 white_cards = tuple(['-']*26)
 for melange_cartes in distinct_permutations(cartes):
-    if melange_cartes[:26] != white_cards and melange_cartes[26:] != white_cards:
+    j1 = [melange_cartes[2*i] for i in range(26)]
+    j2 = [melange_cartes[2*i+1] for i in range(26)]
+    if j1 != white_cards and j2 != white_cards:
         game = Game()
-        game.import_distribution(melange_cartes[:26], melange_cartes[26:])
+        game.import_distribution(j1,j2)
         resultat = game.play()
         if resultat['winner']=='Nobody':
             infinites.append(resultat)
